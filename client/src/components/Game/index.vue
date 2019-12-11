@@ -86,11 +86,16 @@ export default {
     },
     methods: {
         SetBtns(){
-            const btns = [];
+            const btns = [];            
+            const syncBtns = [];
             btns.push({ name: "btn1", id: 1, color: "", top: 0, left: 0 },
                 { name: "btn2", id: 2, color: "", top: 0, left: 0 },
                 { name: "btn3", id: 3, color: "", top: 0, left: 0 }); 
-            this.btns = btns;
+            this.btns = btns; 
+            for (let i in this.btns) {
+                syncBtns.push(btns[i]);
+            }
+            this.$store.commit('setButtons', syncBtns);           
         },
         CheckBtn( id ) { 
             let i = 0;
@@ -109,7 +114,7 @@ export default {
         },
         SetPositionBtns(){
             let absolute = -1;
-            let headingHeight = this.$refs.main.clientHeight + 60;
+            let headingHeight = this.$refs.main.clientHeight;
             let gameHeight = window.innerHeight - headingHeight;
             for (let i in this.btns) {
                let top = Math.floor((Math.random() * gameHeight-(this.btnHeight + headingHeight)));
@@ -127,7 +132,7 @@ export default {
         SetColorBtns() {                 
             for (let i in this.btns) {
                this.btns[i].color = "#" + ( Math.random() * 0xFFFFFF<<0 ).toString(16);
-            }
+            }            
         },
         StartGame(){
             this.level = 1;
