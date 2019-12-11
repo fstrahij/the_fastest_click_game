@@ -37,7 +37,7 @@ export default {
             btnWidth: 0,
             btnHeight: 0,
             startTime: 0,
-            levelTimeElapsed: 0,
+            totalTimeElapsed: 0,
             score: 0,
             btns: []         
         }
@@ -48,7 +48,7 @@ export default {
             return endTime - this.startTime;
         },
         isInTime: function() {
-            if (this.levelTimeElapsed >= this.MAX_TIME) {
+            if (this.totalTimeElapsed >= this.MAX_TIME) {
                 return false;
             }
             return true;
@@ -56,8 +56,8 @@ export default {
         calculateScore: function() {
             let score = 0;
             let multiplier = 1 + ( this.level / 100 );
-            if (this.levelTimeElapsed > 0) {
-                score = Math.round (( this.MAX_TIME - this.levelTimeElapsed ) * multiplier );
+            if (this.totalTimeElapsed > 0) {
+                score = Math.round (( this.MAX_TIME - this.totalTimeElapsed ) * multiplier );
             }
             return score;
         },
@@ -131,7 +131,7 @@ export default {
         },
         StartGame(){
             this.level = 1;
-            this.levelTimeElapsed = 0;
+            this.totalTimeElapsed = 0;
             this.score = 0;
             this.startTime = new Date();
             this.SetBtns();
@@ -143,9 +143,9 @@ export default {
 
         },
         LoadNextLevel() {
-            this.levelTimeElapsed +=  this.timeElapsed;
+            this.totalTimeElapsed +=  this.timeElapsed;
             this.score = this.calculateScore;
-            console.log("Level " + this.level + "\n Time: " + this.levelTimeElapsed);
+            console.log("Level " + this.level + "\n Time: " + this.totalTimeElapsed);
             console.log("YOUR SCORE = " + this.score);
             this.startTime = new Date();
             this.level++;
