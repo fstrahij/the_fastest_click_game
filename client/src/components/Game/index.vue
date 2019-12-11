@@ -60,6 +60,28 @@ export default {
                 score = Math.round (( this.MAX_TIME - this.levelTimeElapsed ) * multiplier );
             }
             return score;
+        },
+        isOverlapping(){
+            for (let i = 0; i < this.btns.length; i++) {
+                let j = i + 1;
+                let topEdge = this.btns[i].top;
+                let botEdge = this.btns[i].top + this.btnHeight;
+                let rightEdge = this.btns[i].left;
+                let leftEdge = this.btns[i].left + this.btnWidth;
+                while (j < this.btns.length) {
+                    let maxTop = this.btns[j].top + this.btnHeight;
+                    let maxLeft = this.btns[j].left + this.btnWidth;
+                    if (((botEdge >= this.btns[j].top && botEdge <= maxTop)
+                        || (topEdge >= this.btns[j].top && topEdge <= maxTop))
+                        && 
+                        ((leftEdge >= this.btns[j].left && leftEdge <= maxLeft)
+                        || (rightEdge >= this.btns[j].left && rightEdge <= maxLeft))) {
+                        return true; 
+                    } 
+                    j++;                 
+                } 
+            }
+            return false;
         }
     },
     methods: {
@@ -74,16 +96,6 @@ export default {
             let i = 0;
             if (id == this.btns[i].id) {
                 this.btns.splice(i, 1);
-                /*const width = this.btnWidth;
-                const height = this.btnHeight; 
-                for (let b in this.btns) {
-                    if (this.btns[b].top <=  this.btns[i].top) {
-                        this.btns[b].top -= this.btns[b].top;
-                    }
-                    if (this.btns[b].left <=  this.btns[i].left) {
-                        this.btns[b].left -= this.btns[b].left;
-                    }
-                }*/
             }
             else{               
                 console.log("GAME OVER\nYOUR SCORE = " + this.score);
@@ -124,8 +136,11 @@ export default {
             this.startTime = new Date();
             this.SetBtns();
             this.InitSizeBtns();
-            this.SetPositionBtns();
-            this.SetColorBtns();
+            do{
+                this.SetPositionBtns();
+            } while(this.isOverlapping);
+            this.SetColorBtns();           
+
         },
         LoadNextLevel() {
             this.levelTimeElapsed +=  this.timeElapsed;
@@ -138,7 +153,9 @@ export default {
             this.btnWidth /= modifier;
             this.btnHeight /= modifier;
             this.SetBtns();
-            this.SetPositionBtns();
+            do{
+                this.SetPositionBtns();
+            } while(this.isOverlapping);
             this.SetColorBtns();
         }
     },
