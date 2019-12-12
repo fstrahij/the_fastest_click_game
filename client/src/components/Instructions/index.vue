@@ -19,7 +19,7 @@
 
 <script>
 export default {
-    name: 'HelloWorld',
+    name: 'Instructions',
     data () {
         return {
             btnWidth: 50,
@@ -42,11 +42,8 @@ export default {
 </script>
 
 <style scoped>
-h1, h2 {
+h2 {
   font-weight: normal;
-}
-#app {
-    height: 100%;
 }
 .panel{
     border: 2px solid black;
