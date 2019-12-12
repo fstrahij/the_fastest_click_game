@@ -3,6 +3,7 @@
         class="main"
         ref="main"
     >
+        <Countdown/>
         <h1>Level {{ level }}</h1>
         <div
             class="panel"
@@ -28,8 +29,13 @@
 </template>
 
 <script>
+import Countdown from '../Countdown'
+
 export default {
     name: 'Game',
+    components: {
+        Countdown
+    },
     data () {
         return {
             MAX_TIME: 1000000,
