@@ -19,9 +19,9 @@
 </template>
 
 <script>
+import PlayerInput from './components/PlayerInput'
 import Game from './components/Game'
 import Instructions from './components/Instructions'
-import PlayerInput from './components/PlayerInput'
 
 export default {
     name: 'App',
