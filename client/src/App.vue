@@ -1,24 +1,54 @@
 <template>
   <div id="app">
-    <div class="game-panel">
-        <Game/>
+    <div 
+        class="player-input"
+        v-if="startGame === false"
+    >
+        <PlayerInput/>        
     </div>
-    <div class="instructions-panel">
-        <Instructions/>
+    <div v-else-if="startGame === true">
+        <div class="game-panel">
+            <Game/>
+        </div>
+        <div class="instructions-panel">
+            <Instructions/>
+        </div>
     </div>
+    
   </div>
 </template>
 
 <script>
 import Game from './components/Game'
 import Instructions from './components/Instructions'
+import PlayerInput from './components/PlayerInput'
 
 export default {
-  name: 'App',
-  components: {
-    Game,
-    Instructions
-  }
+    name: 'App',
+    components: {
+        PlayerInput,
+        Game,
+        Instructions
+    },
+    data () {
+        return {
+            startGame: false
+        }
+    },
+    computed: {
+        isPlayerSet: function() {
+            const player = this.$store.getters.getPlayer;
+            if (player != "") {
+                return true;
+            }                
+            return false;              
+        }
+    },
+    watch: {
+        isPlayerSet (newValue, oldValue){
+            this.startGame = newValue;
+        }
+    }
 }
 </script>
 
