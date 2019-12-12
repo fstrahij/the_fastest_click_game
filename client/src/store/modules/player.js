@@ -10,7 +10,9 @@ const mutations = {
 
 const actions = {
 	setPlayer(vuexContext, player) {
-		vuexContext.commit('setPlayer', player);
+		setTimeout(() => {
+			vuexContext.commit('setPlayer', player);
+		}, 1500)
 	}
 }
 

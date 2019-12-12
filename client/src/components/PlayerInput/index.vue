@@ -25,7 +25,7 @@ export default {
             }
             else{
                 this.errors = '';
-                this.$store.commit('setPlayer', this.player);
+                this.$store.dispatch('setPlayer', this.player);
             }   
         }
     }
