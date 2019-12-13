@@ -107,7 +107,7 @@ export default {
         },
         CheckBtn( id ) { 
             let i = 0;
-            if (id == this.btns[i].id) {
+            if (id == this.btns[i].id && !this.gameOver) {
                 this.btns.splice(i, 1);
             }
             else{   
