@@ -23,14 +23,20 @@
                 />                     
             </div>
         </div>
-        
+        <div v-if="gameOver === true">            
+            <Scoreboard/>
+        </div>
     </div>
 </template>
 
 <script>
+import Scoreboard from '../Scoreboard'
 
 export default {
     name: 'Game',
+    components: {
+        Scoreboard
+    },
     data () {
         return {
             MAX_TIME: 1000000,
@@ -40,6 +46,7 @@ export default {
             startTime: 0,
             totalTimeElapsed: 0,
             score: 0,
+            gameOver: false,
             btns: []         
         }
     },
@@ -103,11 +110,10 @@ export default {
             if (id == this.btns[i].id) {
                 this.btns.splice(i, 1);
             }
-            else{               
-                console.log("GAME OVER\nYOUR SCORE = " + this.score);
-                const remain = 3;
-                this.$store.commit('setRemain', remain);
-                this.StartGame();
+            else{   
+                this.gameOver = true;            
+                //console.log("GAME OVER\nYOUR SCORE = " + this.score);
+                //this.StartGame();
             } 
         },
         InitSizeBtns() {
@@ -138,6 +144,7 @@ export default {
             }            
         },
         StartGame(){
+            this.gameOver = false;
             this.level = 1;
             this.totalTimeElapsed = 0;
             this.score = 0;
@@ -150,9 +157,10 @@ export default {
             this.SetColorBtns();           
 
         },
-        LoadNextLevel() {
+        async LoadNextLevel() {
             this.totalTimeElapsed +=  this.timeElapsed;
             this.score = this.calculateScore;
+            await this.$store.dispatch("setScore", this.score);
             console.log("Level " + this.level + "\n Time: " + this.totalTimeElapsed);
             console.log("YOUR SCORE = " + this.score);
             this.startTime = new Date();
