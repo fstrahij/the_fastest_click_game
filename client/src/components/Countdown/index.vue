@@ -16,23 +16,17 @@ export default {
     },
     methods: {
         async Startremaindown() {
-            while(this.remain > 0){
-                await Countdown(this.remain).then( (msg) => {
+            let remain = this.remain;
+            while(remain >= 0){
+                await Countdown(remain).then( (msg) => {
                     this.remain = msg;
                 });
-                this.remain --;
+                remain --;
             }
         }
     },
     mounted() {
         this.Startremaindown();
-    },
-    watch: {
-        remain (){
-            if (this.remain == 0) {
-                this.remain = "PLAY!";
-            }
-        }
     }
 }
 </script>
