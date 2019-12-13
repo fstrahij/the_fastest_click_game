@@ -2,11 +2,17 @@
   <div id="app">
     <div 
         class="player-input"
-        v-if="startGame === false"
+        v-if="startCountdown === false && startGame === false"
     >
         <PlayerInput/>        
     </div>
-    <div v-else-if="startGame === true">
+    <div 
+        class="countdown"
+        v-if="startCountdown === true && startGame === false"
+    >
+        <Countdown/>        
+    </div>
+    <div v-else-if="startCountdown === false && startGame === true">
         <div class="game-panel">
             <Game/>
         </div>
@@ -20,6 +26,7 @@
 
 <script>
 import PlayerInput from './components/PlayerInput'
+import Countdown from './components/Countdown'
 import Game from './components/Game'
 import Instructions from './components/Instructions'
 
@@ -27,11 +34,13 @@ export default {
     name: 'App',
     components: {
         PlayerInput,
+        Countdown,
         Game,
         Instructions
     },
     data () {
         return {
+            startCountdown: false,
             startGame: false
         }
     },
@@ -42,10 +51,21 @@ export default {
                 return true;
             }                
             return false;              
+        },
+        isCountdownEnd: function() {
+            let remain = this.$store.getters.getRemain;
+            if (remain == 0) {
+                return true;
+            }                
+            return false;
         }
     },
     watch: {
         isPlayerSet (newValue, oldValue){
+            this.startCountdown = newValue;
+        },
+        isCountdownEnd (newValue, oldValue){
+            this.startCountdown = oldValue;
             this.startGame = newValue;
         }
     }
