@@ -20,7 +20,6 @@
             <Instructions/>
         </div>
     </div>
-    
   </div>
 </template>
 
