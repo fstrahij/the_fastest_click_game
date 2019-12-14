@@ -4,7 +4,7 @@
 			<p>YOUR SCORE</p>
 			<p>{{ score }}</p>
 		</div>
-		<p>PLAYER | SCORE</p>
+		<p>TOP 5 PLAYERS</p>
 		<ol>
 			<li 
 				v-for="player in players"

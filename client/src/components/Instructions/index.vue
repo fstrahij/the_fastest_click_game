@@ -1,6 +1,6 @@
 <template>
     <div class="sidebar">
-        <h2>Instructions</h2>
+        <h2>Instructions</h2>        
         <div class="panel">
             <ol>
                 <li
@@ -22,8 +22,8 @@ export default {
     name: 'Instructions',
     data () {
         return {
-            btnWidth: 50,
-            btnHeight: 50,
+            btnWidth: 0,
+            btnHeight: 0,
             btns: []
         }
     },
@@ -33,6 +33,8 @@ export default {
         }
     },
     mounted() {
+        this.btnWidth = window.innerWidth / 16;
+        this.btnHeight = window.innerHeight / 18;
         this.getButtons;
     },
     watch: {
