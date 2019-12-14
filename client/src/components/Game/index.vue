@@ -140,7 +140,6 @@ export default {
             for (let i in this.btns) {
                this.btns[i].color = "#" + ( Math.random() * 0xFFFFFF<<0 ).toString(16);
                if (this.btns[i].color.length < 7) {
-                    console.log(this.btns[i].name + " - " + this.btns[i].color);
                     this.btns[i].color += 0;
                }   
             }            
