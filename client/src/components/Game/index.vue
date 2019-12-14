@@ -39,12 +39,12 @@ export default {
     },
     data () {
         return {
-            MAX_TIME: 1000000,
+            MAX_TIME: 60000,
             level: 0,
             btnWidth: 0,
             btnHeight: 0,
             startTime: 0,
-            totalTimeElapsed: 0,
+            endTime: 0,
             score: 0,
             gameOver: false,
             btns: []         
@@ -52,11 +52,10 @@ export default {
     },
     computed: {
         timeElapsed: function() {
-            let endTime = new Date();
-            return endTime - this.startTime;
+            return this.endTime - this.startTime;
         },
         isInTime: function() {
-            if (this.totalTimeElapsed >= this.MAX_TIME) {
+            if (this.timeElapsed >= this.MAX_TIME) {
                 return false;
             }
             return true;
@@ -64,8 +63,8 @@ export default {
         calculateScore: function() {
             let score = 0;
             let multiplier = 1 + ( this.level / 100 );
-            if (this.totalTimeElapsed > 0) {
-                score = Math.round (( this.MAX_TIME - this.totalTimeElapsed ) * multiplier );
+            if (this.timeElapsed > 0) {
+                score = Math.round (( this.MAX_TIME - this.timeElapsed ) * multiplier );
             }
             return score;
         },
@@ -146,7 +145,6 @@ export default {
         StartGame(){
             this.gameOver = false;
             this.level = 1;
-            this.totalTimeElapsed = 0;
             this.score = 0;
             this.startTime = new Date();
             this.SetBtns();
@@ -157,11 +155,11 @@ export default {
             this.SetColorBtns();           
 
         },
-        async LoadNextLevel() {
-            this.totalTimeElapsed +=  this.timeElapsed;
-            this.score = this.calculateScore;
-            await this.$store.dispatch("setScore", this.score);
-            console.log("Level " + this.level + "\n Time: " + this.totalTimeElapsed);
+        LoadNextLevel() {            
+            this.endTime = new Date();
+            this.score += this.calculateScore;
+            this.$store.commit("setScore", this.score);
+            console.log("Level " + this.level + "\n Time: " + this.timeElapsed);
             console.log("YOUR SCORE = " + this.score);
             this.startTime = new Date();
             this.level++;
@@ -180,13 +178,13 @@ export default {
     },
     watch: {
         btns() {
-            if (this.btns.length == 0) {
+            if (this.btns.length == 0 && this.isInTime) {
                 this.LoadNextLevel();
             }
         },
         isInTime() {
             if (this.isInTime == false) {
-                this.StartGame();
+                this.gameOver = true;
             }
         }
     }

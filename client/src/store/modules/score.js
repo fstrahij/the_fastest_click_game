@@ -10,9 +10,7 @@ const mutations = {
 
 const actions = {
 	setScore(vuexContext, score) {
-		setTimeout(() => {
-			vuexContext.commit('setScore', score);
-		}, 1500)
+		vuexContext.commit('setScore', score);
 	}
 }
 
