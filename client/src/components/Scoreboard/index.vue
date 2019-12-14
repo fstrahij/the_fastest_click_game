@@ -14,6 +14,7 @@
 			</li>
 		</ol>
 		<button @click="PlayAgain()">Play Again</button>
+		<button @click="ChangePlayer()">Change Player</button>
 	</div>
 </template>
 
@@ -29,9 +30,13 @@ export default {
         }
     },
     methods: {
-    	PlayAgain(){    		
+    	PlayAgain() {    		
                 const remain = 3;
                 this.$store.commit('setRemain', remain);
+    	},
+    	ChangePlayer() {
+            const player = "";
+            this.$store.commit('setPlayer', player);
     	},
     	async PostData() {
     		const baseURI = "http://localhost:3000/newPlayer";

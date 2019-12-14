@@ -62,6 +62,7 @@ export default {
     watch: {
         isPlayerSet (newValue, oldValue){
             this.startCountdown = newValue;
+            this.startGame = false;
         },
         isCountdownEnd (newValue, oldValue){
             this.startCountdown = oldValue;
