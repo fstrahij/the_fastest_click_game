@@ -148,6 +148,7 @@ export default {
             this.gameOver = false;
             this.level = 1;
             this.score = 0;
+            this.$store.commit("setScore", this.score);
             this.startTime = new Date();
             this.SetBtns();
             this.InitSizeBtns();
@@ -158,7 +159,6 @@ export default {
 
         },
         LoadNextLevel() {            
-            this.endTime = new Date();
             this.score += this.calculateScore;
             this.$store.commit("setScore", this.score);
             console.log("Level " + this.level + "\n Time: " + this.timeElapsed);
@@ -180,14 +180,16 @@ export default {
     },
     watch: {
         btns() {
-            if (this.btns.length == 0 && this.isInTime) {
-                this.LoadNextLevel();
+            if (this.btns.length == 0) {
+                this.endTime = new Date();
+                if (this.isInTime) {
+                    this.LoadNextLevel();
+                }
+                else {
+                    this.gameOver = true;
+                }
             }
-        },
-        isInTime() {
-            if (this.isInTime == false) {
-                this.gameOver = true;
-            }
+            
         }
     }
 }
