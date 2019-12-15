@@ -4,7 +4,7 @@
             <h2>Game starts in </h2>
         </div>
         <div>            
-            <h1>{{ remain }}</h1>
+            <p>{{ remain }}</p>
         </div>
     </div>
 </template>
@@ -37,7 +37,13 @@ export default {
 </script>
 
 <style scoped>
-h1, h2 {
+.container{
+    margin-top: 10%;
+}
+h2 {
   font-weight: normal;
+}
+p {
+    font-size: 100px;
 }
 </style>
