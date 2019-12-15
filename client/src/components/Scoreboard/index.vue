@@ -1,20 +1,28 @@
 <template>
 	<div class="container">
-		<div>
-			<p>YOUR SCORE</p>
-			<p>{{ score }}</p>
+		<div class="my-score">
+			<h2>YOUR SCORE</h2>
+			<p class="score">{{ score }}</p>
 		</div>
-		<p>TOP 5 PLAYERS</p>
-		<ol>
-			<li 
-				v-for="player in players"
-				:key="player.id"
-			>
-				{{ player.name }} - {{ player.score }}
-			</li>
-		</ol>
-		<button @click="PlayAgain()">Play Again</button>
-		<button @click="ChangePlayer()">Change Player</button>
+		<div class="top-five">
+			<h2>TOP 5 PLAYERS</h2>
+			<ol>
+				<li 
+					v-for="player in players"
+					:key="player.id"
+				>
+					<span class="players" >{{ player.name }}</span>
+					<span class="scores">{{ player.score }}</span>
+				</li>
+			</ol>
+		</div>
+		<div>			
+			<button @click="PlayAgain()">Play Again</button>
+		</div>
+		<div>
+			<button @click="ChangePlayer()">Change Player</button>			
+		</div>
+				
 	</div>
 </template>
 
@@ -65,9 +73,45 @@ export default {
 </script>
 
 <style scoped>
+li {	
+	width: 90%;
+	text-align: left;
+	margin-bottom: 5px;
+    font-size: 19px;
+}
+.players {
+	padding-left: 2px;
+}
+.scores {
+	float: right;
+	text-align: right;
+}
+.score {	
+	margin-top: 0px;
+    font-size: 60px;
+}
+button:hover {
+	color: red;
+}
+button {	
+	width: 250px;
+	margin-top: 25px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.my-score {
+	float: left;
+	width: 60%;
+	margin: auto;
+}
+.top-five {
+	float: left;
+	width: 40%;
+	margin: auto;
+}
 .container {
 	background-color: rgb(0,0,0);
-	background-color: rgba(0,0,0, 0.4);
+	background-color: rgba(0,0,0, 0.7);
 	color: white;
 	font-weight: bold;
 	border: 3px solid #f1f1f1;
