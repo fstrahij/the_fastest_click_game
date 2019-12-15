@@ -83,7 +83,7 @@ export default {
 .game-panel {
     float: left;
     display: inline;
-    width: 69%;
+    width: 79%;
     height: 100%;
 }
 .instructions-panel {
@@ -91,6 +91,6 @@ export default {
     display: inline;
     margin-left: 1%;
     height: 100%;
-    width: 30%;
+    width: 20%;
 }
 </style>

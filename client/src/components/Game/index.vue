@@ -135,8 +135,7 @@ export default {
                this.btns[i].left = left;
             }
         },
-        SetColorBtns() {      
-
+        SetColorBtns() {
             for (let i in this.btns) {
                this.btns[i].color = "#" + ( Math.random() * 0xFFFFFF<<0 ).toString(16);
                if (this.btns[i].color.length < 7) {
@@ -161,8 +160,6 @@ export default {
         LoadNextLevel() {            
             this.score += this.calculateScore;
             this.$store.commit("setScore", this.score);
-            console.log("Level " + this.level + "\n Time: " + this.timeElapsed);
-            console.log("YOUR SCORE = " + this.score);
             this.startTime = new Date();
             this.level++;
             let modifier = 1.5;
@@ -188,8 +185,7 @@ export default {
                 else {
                     this.gameOver = true;
                 }
-            }
-            
+            }            
         }
     }
 }
@@ -198,7 +194,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1 {
-  font-weight: normal;
+  font-weight: bolder;
 }
 .panel{
     position: relative;

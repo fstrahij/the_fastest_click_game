@@ -1,28 +1,32 @@
 <template>
 	<div class="container">
-		<div class="my-score">
-			<h2>YOUR SCORE</h2>
-			<p class="score">{{ score }}</p>
+		<div class="panel">
+			<div class="my-score">
+				<h2>YOUR SCORE</h2>
+				<p class="score">{{ score }}</p>
+			</div>
+			<div class="top-five">
+				<h2>TOP 5 PLAYERS</h2>
+				<ol>
+					<li 
+						v-for="player in players"
+						:key="player.id"
+					>
+						<span class="players" >{{ player.name }}</span>
+						<span class="scores">{{ player.score }}</span>
+					</li>
+				</ol>
+			</div>
 		</div>
-		<div class="top-five">
-			<h2>TOP 5 PLAYERS</h2>
-			<ol>
-				<li 
-					v-for="player in players"
-					:key="player.id"
-				>
-					<span class="players" >{{ player.name }}</span>
-					<span class="scores">{{ player.score }}</span>
-				</li>
-			</ol>
+		
+		<div class="btns">
+			<div>			
+				<button @click="PlayAgain()">Play Again</button>
+			</div>
+			<div>
+				<button @click="ChangePlayer()">Change Player</button>			
+			</div>
 		</div>
-		<div>			
-			<button @click="PlayAgain()">Play Again</button>
-		</div>
-		<div>
-			<button @click="ChangePlayer()">Change Player</button>			
-		</div>
-				
 	</div>
 </template>
 
@@ -73,6 +77,9 @@ export default {
 </script>
 
 <style scoped>
+.panel {
+	min-height: 250px;
+}
 li {	
 	width: 90%;
 	text-align: left;
@@ -95,7 +102,7 @@ button:hover {
 }
 button {	
 	width: 250px;
-	margin-top: 25px;
+	margin-top: 30px;
 	font-weight: bold;
 	text-transform: uppercase;
 }
@@ -118,7 +125,7 @@ button {
 	position: absolute;
 	top: 40%;
 	left: 50%;
-	height: 50%;
+	height: 70%;
 	transform: translate(-50%, -50%);
 	z-index: 2;
 	width: 80%;

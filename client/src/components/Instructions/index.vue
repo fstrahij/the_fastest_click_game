@@ -1,6 +1,6 @@
 <template>
     <div class="sidebar">
-        <h2>Instructions</h2>        
+        <h1>Instructions</h1>       
         <div class="panel">
             <ol>
                 <li
@@ -12,8 +12,8 @@
                                   background: btn.color }"
                 />
             </ol>
-        </div>
-        
+        </div>        
+        <p>You have 60 seconds per level to solve problem!</p> 
     </div>
 </template>
 
@@ -44,10 +44,11 @@ export default {
 </script>
 
 <style scoped>
-h2 {
-  font-weight: normal;
+h1 {
+    font-weight: normal;
 }
 .panel{
+    margin-top: 10px;
     border: 2px solid black;
 }
 .btn {
