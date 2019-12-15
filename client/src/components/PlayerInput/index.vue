@@ -38,6 +38,15 @@ export default {
 h1, h2 {
   font-weight: normal;
 }
+button:hover {
+    color: red;
+}
+button {
+    width: 150px;
+    margin-top: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
 .container {
     background-color: rgba(144, 238, 144, 0.2);
     border-radius: 25px;
