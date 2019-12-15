@@ -1,11 +1,13 @@
 <template>
     <div class="container">
-        <input 
-            v-model.trim="player" 
-            placeholder="Player Name"
-        >
-        <button @click="CheckInput()">Start Game</button>
-        <p v-if="errors != ''"> {{ errors }} </p>
+        <div class="input-elements">
+            <input 
+                v-model.trim="player" 
+                placeholder="Player Name"
+            >
+            <button @click="CheckInput()">Start Game</button>
+            <p v-if="errors != ''"> {{ errors }} </p>
+        </div>        
     </div>
 </template>
 
@@ -36,8 +38,17 @@ export default {
 h1, h2 {
   font-weight: normal;
 }
-.container{
-    border: 2px solid black;
+.container {
+    background-color: rgba(144, 238, 144, 0.2);
+    border-radius: 25px;
+    border: 2px solid #006400;
+    height: 25%;
+    width: 50%;
+    margin: auto;
+    margin-top: 5%;
+}
+.input-elements {
+    padding: 3% 10% 4% 10%;
 }
 p{
     color: red;
