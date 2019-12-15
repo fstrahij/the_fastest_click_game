@@ -13,12 +13,7 @@
         <Countdown/>        
     </div>
     <div v-else-if="startCountdown === false && startGame === true">
-        <div class="game-panel">
-            <Game/>
-        </div>
-        <div class="instructions-panel">
-            <Instructions/>
-        </div>
+        <Game/>
     </div>
   </div>
 </template>
@@ -27,15 +22,13 @@
 import PlayerInput from './components/PlayerInput'
 import Countdown from './components/Countdown'
 import Game from './components/Game'
-import Instructions from './components/Instructions'
 
 export default {
     name: 'App',
     components: {
         PlayerInput,
         Countdown,
-        Game,
-        Instructions
+        Game
     },
     data () {
         return {
@@ -79,18 +72,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-.game-panel {
-    float: left;
-    display: inline;
-    width: 79%;
-    height: 100%;
-}
-.instructions-panel {
-    float: left;
-    display: inline;
-    margin-left: 1%;
-    height: 100%;
-    width: 20%;
 }
 </style>

@@ -3,11 +3,11 @@
         class="main"
         ref="main"
     >
-        <h1>Level {{ level }}</h1>
         <div
             class="panel"
             ref="panel" 
         >
+            <h1>Level {{ level }}</h1>
             <div 
                 v-for="btn in btns"
                 :key="btn.id"
@@ -23,6 +23,9 @@
                 />                     
             </div>
         </div>
+        <div class="instructions">
+            <Instructions/>
+        </div>
         <div v-if="gameOver === true">            
             <Scoreboard/>
         </div>
@@ -30,11 +33,13 @@
 </template>
 
 <script>
+import Instructions from '../Instructions'
 import Scoreboard from '../Scoreboard'
 
 export default {
     name: 'Game',
     components: {
+        Instructions,
         Scoreboard
     },
     data () {
@@ -121,7 +126,8 @@ export default {
         SetPositionBtns(){
             let absolute = -1;
             let headingHeight = this.$refs.main.clientHeight;
-            let gameHeight = window.innerHeight - headingHeight;
+            let panelHeight = this.$refs.panel.clientHeight;
+            let gameHeight = window.innerHeight - headingHeight - panelHeight;
             for (let i in this.btns) {
                let top = Math.floor((Math.random() * gameHeight-(this.btnHeight + headingHeight)));
                let left = Math.floor((Math.random() * this.$refs.panel.clientWidth-this.btnWidth));
@@ -198,7 +204,18 @@ h1 {
 }
 .panel{
     position: relative;
-    border: 2px solid black;
+    border-bottom: 2px solid black;
+    float: left;
+    display: inline;
+    width: 79%;
+    height: 100%;
+}
+.instructions {
+    float: left;
+    display: inline;
+    margin-left: 1%;
+    height: 100%;
+    width: 20%;
 }
 .btn {
     position: absolute;
