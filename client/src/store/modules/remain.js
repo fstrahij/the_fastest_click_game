@@ -16,6 +16,7 @@ const actions = {
 					resolve(remain);
 					vuexContext.commit('setRemain', remain);
 				}else{
+					resolve(remain);
 					vuexContext.commit('setRemain', remain);
 				}
 			}, 1000);

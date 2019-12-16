@@ -27,8 +27,14 @@ export default {
             }
             else{
                 this.errors = '';
-                this.$store.dispatch('setPlayer', this.player);
+                localStorage.setItem('player', JSON.stringify( this.player ));
+                this.$router.push({ path: '/game' });
             }   
+        }
+    },
+    mounted() {
+        if (localStorage.getItem('player')) {
+            this.player = JSON.parse( localStorage.getItem('player') );
         }
     }
 }

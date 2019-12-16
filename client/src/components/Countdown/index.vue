@@ -1,21 +1,39 @@
 <template>
-    <div class="container">
-        <div>
-            <h2>Game starts in </h2>
+    <div class="container">        
+        <div 
+            class="panel" 
+            v-if="remain > 0"
+        >
+            <div>
+                <h2>Game starts in </h2>
+            </div>
+            <div>            
+                <p>{{ remain }}</p>
+            </div>
         </div>
-        <div>            
-            <p>{{ remain }}</p>
+        
+        <div v-else>
+            <Game/>
         </div>
     </div>
 </template>
 
 <script>
+import Game from '../Game'
 
 export default {
     name: 'Countdown',
+    components: {
+        Game
+    },
     data () {
         return {
             remain: 0,
+        }
+    },
+    computed: {
+        playAgain: function() {
+            return this.$store.getters.getRemain;
         }
     },
     methods: {
@@ -32,12 +50,18 @@ export default {
     mounted() {
         this.remain = 3;
         this.StartCountdown();
+    },
+    watch: {
+        playAgain (newValue, oldValue){
+            this.remain = newValue;
+            this.StartCountdown();
+        }
     }
 }
 </script>
 
 <style scoped>
-.container{
+.panel{
     margin-top: 10%;
 }
 h2 {

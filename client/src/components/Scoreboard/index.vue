@@ -20,11 +20,11 @@
 		</div>
 		
 		<div class="btns">
-			<div>			
+			<div>	
 				<button @click="PlayAgain()">Play Again</button>
 			</div>
 			<div>
-				<button @click="ChangePlayer()">Change Player</button>			
+				<router-link to="/" tag="button">Change Player</router-link>			
 			</div>
 		</div>
 	</div>
@@ -42,17 +42,13 @@ export default {
         }
     },
     methods: {
-    	PlayAgain() {    		
-                const remain = 3;
-                this.$store.commit('setRemain', remain);
-    	},
-    	ChangePlayer() {
-            const player = "";
-            this.$store.commit('setPlayer', player);
+    	PlayAgain() {
+    		const remain = 3;
+    		this.$store.commit("setRemain", remain);
     	},
     	async PostData() {
     		const baseURI = "http://localhost:3000/newPlayer";
-    		const name = this.$store.getters.getPlayer;;
+    		const name = JSON.parse( localStorage.getItem('player') );
     		const score = this.$store.getters.getScore;
     		this.score = score;
 	    	await axios.post(baseURI, {
