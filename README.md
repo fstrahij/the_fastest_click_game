@@ -8,9 +8,11 @@
   3. Create table in database: CREATE TABLE scoreboard(Id SERIAL PRIMARY KEY, name VARCHAR(30), score INTEGER);
   4. In /server/queries.js set database connection params
   - OPTIONAL change incoming connection in /server/index.js.
+  5. start server with command: node index.js
   
 # Client setup:
-  1. Install vuex and axios
+  1. Install vuex, axios and vue-router
+  2. start server with command: npm run dev
   
 
         
