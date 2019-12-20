@@ -61,6 +61,11 @@ export default {
 </script>
 
 <style scoped>
+.container {
+    margin-top: 0;
+    margin-bottom: 0;
+    height: 100%;
+}
 .panel{
     margin-top: 10%;
 }
