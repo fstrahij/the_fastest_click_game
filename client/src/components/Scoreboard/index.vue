@@ -47,7 +47,7 @@ export default {
     		this.$store.commit("setRemain", remain);
     	},
     	async PostData() {
-    		const baseURI = "http://localhost:3000/newPlayer";
+    		const baseURI = "/newPlayer";
     		const name = JSON.parse( localStorage.getItem('player') );
     		const score = this.$store.getters.getScore;
     		this.score = score;
@@ -59,7 +59,7 @@ export default {
 	    	})
     	},
     	GetData() {
-    		const baseURI = "http://localhost:3000/scoreboard";
+    		const baseURI = "/scoreboard";
 	    	axios.get(baseURI).then(response => {
 				this.players = response.data;
     		})

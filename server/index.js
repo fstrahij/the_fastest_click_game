@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
@@ -13,7 +14,7 @@ app.use(
 )
 
 const corsConfig = function(req, res, next) {
-	res.header('Access-Control-Allow-Origin', 'http://localhost:8080')
+	res.header('Access-Control-Allow-Origin', '*')
 	res.header('Access-Control-Allow-Credentials', true)
 	res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT')
 	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
@@ -24,7 +25,7 @@ app.use(corsConfig);
 app.get('/', (request, response) => {
 	response.json({ info: 'Node.js, Express, and Postgres API'})
 })
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
 	console.log(`App running on port ${port}.`)
 })
 app.get('/scoreboard', db.getTopFivePlayers)

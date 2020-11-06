@@ -1,10 +1,10 @@
 const Pool = require('pg').Pool
 const pool = new Pool({
-	user: 'filip',
-	host: 'localhost',
-	database: 'the_fastest_click_game',
-	password: '1234',
-	port: 5432,
+	user: process.env.D_USER,
+	host: process.env.D_HOST,
+	database: process.env.D_DATABASE,
+	password: process.env.D_PASSWORD,
+	port: process.env.D_PORT,
 })
 
 const getTopFivePlayers = (request, response) => {
