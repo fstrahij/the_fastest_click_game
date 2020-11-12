@@ -1,10 +1,12 @@
 require('dotenv').config()
 const express = require('express')
+const history = require('connect-history-api-fallback');
 const bodyParser = require('body-parser')
 const app = express()
 const db = require('./queries')
 const port = 3000
 
+app.use(history())
 app.use(express.static("public"))
 app.use(bodyParser.json())
 app.use(
